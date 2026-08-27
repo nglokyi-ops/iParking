@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Intelligent Parking System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>Intelligent Parking System</header>
+
+<!-- parking -->
+<div class="parking">
+
+    <div class="left">
+        <button id="A1" class="slotleft available">A1</button>
+        <button id="A2" class="slotleft available">A2</button>
+        <button id="A3" class="slotleft available">A3</button>
+        <button id="A4" class="slotleft available">A4</button>
+    </div>
+
+    <div class="right">
+        <button id="P1" class="slotright available">P1</button>
+        <button id="P2" class="slotright available">P2</button>
+        <button id="P3" class="slotright available">P3</button>
+        <button id="P4" class="slotright available">P4</button>
+    </div>
+
+</div>
+
+
+<div class="entrance">
+    Entrance
+</div>
+
+
+<!-- display -->
+<div class="display">
+
+    <span>
+        <span class="green"></span>
+        Available
+        <span id="availableCount">0</span>/8
+    </span>
+
+</div>
+<div class="display">
+
+    <span>
+        <span class="red"></span>
+        Occupied
+        <span id="occupiedCount">0</span>/8
+    </span>
+
+</div>
+
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>
+
+

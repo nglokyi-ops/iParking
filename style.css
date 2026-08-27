@@ -1,0 +1,105 @@
+body{
+    font-family: Arial;
+
+}
+header{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.parking{
+    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:200px;
+
+}
+.left{
+    display:grid;
+    grid-template-columns:repeat(2,120px);
+    gap:30px;
+}
+
+.right{
+   display:grid;
+    grid-template-columns:max-content;
+    gap:25px;
+
+}
+
+.slotright{
+
+    width:120px;
+    height:80px;
+
+    font-size:25px;
+    font-weight:bold;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.slotleft{
+
+    width:100px;
+    height:120px;
+
+    font-size:25px;
+    font-weight:bold;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.entrance{
+    font-size: 50px;
+    margin-left:100px;
+    margin-bottom: 100px;
+
+}
+
+.display{
+    margin-left: 100px;
+    
+    
+}
+
+.red{
+
+    display:inline-block;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:red;
+
+}
+
+.green{
+
+    display:inline-block;
+    width:18px;
+    height:18px;
+    border-radius:60%;
+    background:limegreen;
+
+}
+
+.available{
+
+background:lime;
+
+}
+
+.occupied{
+
+background:red;
+
+}
