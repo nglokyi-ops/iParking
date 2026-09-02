@@ -206,17 +206,32 @@ slots.forEach(function(slot) {
 
     slot.addEventListener("click", function() {
 
-        // Show selected parking slot
-        selectedSlot.textContent = slot.id;
+        // =============================
+        // AVAILABLE
+        // =============================
+        if (slot.classList.contains("available")) {
 
-        // Draw route
-        routeLine.setAttribute(
-            "points",
-            routes[slot.id]
-        );
+            selectedSlot.textContent = slot.id;
 
-        // Open popup
-        mapPopup.style.display = "flex";
+            // Draw direction
+            routeLine.setAttribute(
+                "points",
+                routes[slot.id]
+            );
+
+            // Show map popup
+            mapPopup.style.display = "flex";
+        }
+
+
+        // =============================
+        // OCCUPIED
+        // =============================
+        else if (slot.classList.contains("occupied")) {
+
+            alert("Occupied!");
+
+        }
 
     });
 
