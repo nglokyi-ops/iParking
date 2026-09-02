@@ -149,3 +149,98 @@ function updateOccupiedCounter() {
     document.getElementById("occupiedCount").textContent =
         occupiedSlots;
 }
+
+
+// =====================================
+// MAP POPUP
+// =====================================
+
+// Find all parking slot buttons
+const slots =
+    document.querySelectorAll(".slot");
+
+// Find popup elements
+const mapPopup =
+    document.getElementById("mapPopup");
+
+const selectedSlot =
+    document.getElementById("selectedSlot");
+
+const closePopup =
+    document.getElementById("closePopup");
+
+const routeLine =
+    document.getElementById("routeLine");
+
+
+// =====================================
+// ROUTES
+// =====================================
+
+const routes = {
+
+    A1: "450,600 340,450 500,320 550,400",
+
+    A2: "450,600 340,450 560,280 600,350",
+
+    A3: "450,600 340,450 580,260 760,500 670,570 640,530",
+
+    A4: "450,600 340,450 580,260 750,500 720,530 680,490",
+
+    P1: "450,600 340,450 580,270 640,360 680,340",
+
+    P2: "450,600 340,450 580,270 660,390 720,370",
+
+    P3: "450,600 340,450 580,270 700,450 740,420",
+    
+    P4: "450,600 340,450 580,270 720,480 770,460" 
+
+};
+
+
+// =====================================
+// CLICK PARKING SLOT
+// =====================================
+
+slots.forEach(function(slot) {
+
+    slot.addEventListener("click", function() {
+
+        // Show selected parking slot
+        selectedSlot.textContent = slot.id;
+
+        // Draw route
+        routeLine.setAttribute(
+            "points",
+            routes[slot.id]
+        );
+
+        // Open popup
+        mapPopup.style.display = "flex";
+
+    });
+
+});
+
+
+// =====================================
+// CLOSE POPUP
+// =====================================
+
+closePopup.addEventListener("click", function() {
+
+    mapPopup.style.display = "none";
+
+});
+
+
+// Close when clicking outside white box
+mapPopup.addEventListener("click", function(event) {
+
+    if (event.target === mapPopup) {
+
+        mapPopup.style.display = "none";
+
+    }
+
+});
