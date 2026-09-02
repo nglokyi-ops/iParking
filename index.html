@@ -16,24 +16,86 @@
 <div class="parking">
 
     <div class="left">
-        <button id="A1" class="slotleft available">A1</button>
-        <button id="A2" class="slotleft available">A2</button>
-        <button id="A3" class="slotleft available">A3</button>
-        <button id="A4" class="slotleft available">A4</button>
+        <button id="A1" class="slot slotleft available">A1</button>
+        <button id="A2" class="slot slotleft available">A2</button>
+        <button id="A3" class="slot slotleft available">A3</button>
+        <button id="A4" class="slot slotleft available">A4</button>
     </div>
 
     <div class="right">
-        <button id="P1" class="slotright available">P1</button>
-        <button id="P2" class="slotright available">P2</button>
-        <button id="P3" class="slotright available">P3</button>
-        <button id="P4" class="slotright available">P4</button>
+        <button id="P1" class="slot slotright available">P1</button>
+        <button id="P2" class="slot slotright available">P2</button>
+        <button id="P3" class="slot slotright available">P3</button>
+        <button id="P4" class="slot slotright available">P4</button>
     </div>
 
 </div>
 
+<!--mapping-->
+<div id="mapPopup" class="popup">
+
+    <div class="popup-box">
+
+        <button id="closePopup"
+                class="close-button">&times;
+        </button>
+
+        <h2>
+            Direction to
+            <span id="selectedSlot"></span>
+        </h2>
+
+
+        <div class="map-container">
+
+            <img src="parking-map.png"
+                 class="popup-map"
+                 alt="Parking Map">
+
+
+            <svg class="route-layer"
+                 viewBox="0 0 1037 768"
+                 preserveAspectRatio="none">
+
+                <defs>
+
+                    <marker id="arrowHead"
+                            markerWidth="8"
+                            markerHeight="8"
+                            refX="7"
+                            refY="3"
+                            orient="auto">
+
+                        <path d="M0,0 L0,6 L9,3 z"
+                              fill="black">
+                        </path>
+
+                    </marker>
+
+                </defs>
+
+
+                <polyline id="routeLine"
+                          points=""
+                          fill="none"
+                          stroke="black"
+                          stroke-width="6"
+                          stroke-linejoin="round"
+                          stroke-linecap="round"
+                          marker-end="url(#arrowHead)">
+                </polyline>
+
+            </svg>
+
+        </div>
+
+    </div>
+
+</div>
 
 <div class="entrance">
     Entrance
+</div>
 </div>
 
 
