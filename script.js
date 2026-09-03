@@ -1,261 +1,192 @@
-// =====================================
-// FIREBASE IMPORTS
-// =====================================
+body{
+    font-family: Arial;
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-
-import {
-    getDatabase,
-    ref,
-    onValue
 }
-from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
-
-
-// =====================================
-// FIREBASE CONFIG
-// =====================================
-
-const firebaseConfig = {
-
-    apiKey: "AIzaSyCaRJ5VIqKoa4GKS7MYBEo7ooDaTE3KEYI",
-
-    authDomain: "iparking-e333b.firebaseapp.com",
-
-    databaseURL:
-    "https://iparking-e333b-default-rtdb.asia-southeast1.firebasedatabase.app",
-
-    projectId: "iparking-e333b",
-
-    storageBucket: "iparking-e333b.firebasestorage.app",
-
-    messagingSenderId: "336114013412",
-
-    appId: "1:336114013412:web:e6a18068b885a290c688f1"
-
-};
-
-
-// =====================================
-// INITIALIZE FIREBASE
-// =====================================
-
-const app = initializeApp(firebaseConfig);
-
-const db = getDatabase(app);
-
-console.log("Firebase initialized");
-
-
-// =====================================
-// PARKING SLOT LIST
-// =====================================
-
-const parkingSlots = [
-    "A1",
-    "A2",
-    "A3",
-    "A4",
-    "P1",
-    "P2",
-    "P3",
-    "P4"
-];
-
-
-// =====================================
-// READ PARKING STATUS FROM FIREBASE
-// =====================================
-
-parkingSlots.forEach((slotName) => {
-
-    // Find parking button in HTML
-    const slotButton =
-        document.getElementById(slotName);
-
-
-    // Firebase location
-    const slotRef =
-        ref(db,  "Parking/" + slotName + "/status");
-
-
-    // Listen for Firebase changes
-    onValue(slotRef, (snapshot) => {
-
-        const occupied = snapshot.val();
-
-        console.log(
-            slotName,
-            "Firebase value:",
-            occupied
-        );
-
-
-        // =============================
-        // OCCUPIED
-        // =============================
-
-        if (occupied === true)
-        {
-            slotButton.classList.remove("available");
-
-            slotButton.classList.add("occupied");
-
-            console.log(slotName + " = OCCUPIED");
-        }
-
-
-        // =============================
-        // AVAILABLE
-        // =============================
-
-        else
-        {
-            slotButton.classList.remove("occupied");
-
-            slotButton.classList.add("available");
-
-            console.log(slotName + " = AVAILABLE");
-        }
-        
-        updateAvailableCounter();
-        updateOccupiedCounter();
-
-    });
-
-});
-
-// =============================
-// Counter Available
-// =============================
-function updateAvailableCounter() {
-
-    const availableSlots =
-        document.querySelectorAll(".available").length;
-
-    document.getElementById("availableCount").textContent =
-        availableSlots;
+header{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 80px;
 }
 
-// =============================
-// Counter Occupied
-// =============================
-function updateOccupiedCounter() {
-
-    const occupiedSlots =
-        document.querySelectorAll(".occupied").length;
-
-    document.getElementById("occupiedCount").textContent =
-        occupiedSlots;
-}
-
-
-// =====================================
-// MAP POPUP
-// =====================================
-
-// Find all parking slot buttons
-const slots =
-    document.querySelectorAll(".slot");
-
-// Find popup elements
-const mapPopup =
-    document.getElementById("mapPopup");
-
-const selectedSlot =
-    document.getElementById("selectedSlot");
-
-const closePopup =
-    document.getElementById("closePopup");
-
-const routeLine =
-    document.getElementById("routeLine");
-
-
-// =====================================
-// ROUTES
-// =====================================
-
-const routes = {
-
-    A1: "450,600 340,450 500,320 550,400",
-
-    A2: "450,600 340,450 560,280 600,350",
-
-    A3: "450,600 340,450 580,260 760,500 670,570 640,530",
-
-    A4: "450,600 340,450 580,260 750,500 720,530 680,490",
-
-    P1: "450,600 340,450 580,270 640,360 680,340",
-
-    P2: "450,600 340,450 580,270 660,390 720,370",
-
-    P3: "450,600 340,450 580,270 700,450 740,420",
+.parking{
     
-    P4: "450,600 340,450 580,270 720,480 770,460" 
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:200px;
 
-};
+}
+.left{
+    display:grid;
+    grid-template-columns:repeat(2,120px);
+    gap:30px;
+}
+
+.right{
+   display:grid;
+    grid-template-columns:max-content;
+    gap:25px;
+
+}
+
+.slotright{
+
+    width:120px;
+    height:80px;
+
+    font-size:25px;
+    font-weight:bold;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.slotleft{
+
+    width:100px;
+    height:120px;
+
+    font-size:25px;
+    font-weight:bold;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.entrance{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.display{
+    margin-left: 100px;
+    
+    
+}
+
+.red{
+
+    display:inline-block;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:red;
+
+}
+
+.green{
+
+    display:inline-block;
+    width:18px;
+    height:18px;
+    border-radius:60%;
+    background:limegreen;
+
+}
+
+.available{
+
+background:lime;
+
+}
+
+.occupied{
+
+background:red;
+
+}
+
+.popup {
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.6);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
 
 
-// =====================================
-// CLICK PARKING SLOT
-// =====================================
+.popup-box {
+    position: relative;
 
-slots.forEach(function(slot) {
+    background-color: white;
 
-    slot.addEventListener("click", function() {
+    padding: 25px;
 
-        // =============================
-        // AVAILABLE
-        // =============================
-        if (slot.classList.contains("available")) {
+    border-radius: 15px;
 
-            selectedSlot.textContent = slot.id;
+    text-align: center;
 
-            // Draw direction
-            routeLine.setAttribute(
-                "points",
-                routes[slot.id]
-            );
-
-            // Show map popup
-            mapPopup.style.display = "flex";
-        }
+    width: 80%;
+    max-width: 800px;
+}
 
 
-        // =============================
-        // OCCUPIED
-        // =============================
-        else if (slot.classList.contains("occupied")) {
+.popup-map {
+    width: 100%;
+    max-width: 700px;
 
-            alert("Occupied!");
-
-        }
-
-    });
-
-});
+    height: auto;
+}
 
 
-// =====================================
-// CLOSE POPUP
-// =====================================
+.close-button {
+    position: absolute;
 
-closePopup.addEventListener("click", function() {
+    top: 10px;
+    right: 15px;
 
-    mapPopup.style.display = "none";
+    border: none;
+    background: none;
 
-});
+    font-size: 35px;
+
+    cursor: pointer;
+}
+
+.map-container {
+    position: relative;
+
+    width: 100%;
+    max-width: 700px;
+
+    margin: auto;
+}
 
 
-// Close when clicking outside white box
-mapPopup.addEventListener("click", function(event) {
+.popup-map {
+    display: block;
 
-    if (event.target === mapPopup) {
+    width: 100%;
+    height: auto;
+}
 
-        mapPopup.style.display = "none";
 
-    }
+.route-layer {
+    position: absolute;
 
-});
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
